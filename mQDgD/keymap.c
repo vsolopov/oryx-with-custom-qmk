@@ -52,12 +52,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [5] = LAYOUT_moonlander(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, TO(0),                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_LALT, KC_L),KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_LEFT_CTRL,   KC_LEFT_GUI,    KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT_ALT,    KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+    // First row: Navigation shortcuts
+    KC_TRANSPARENT,      // -
+    LGUI(KC_O),         // Class: Go to class (⌘O)
+    LGUI(LSFT(KC_O)),   // File: Go to file (⌘⇧O)
+    LGUI(LALT(LSFT(KC_O))), // Symbol: Go to symbol (⌘⌥⇧O)
+    KC_F7,              // StepIn: Step into (F7)
+    KC_F8,              // StepOv: Step over (F8)
+    TO(0),              // Base: Return to base layer
+                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+
+    // Second row: Navigation
+    KC_TRANSPARENT,      // -
+    LGUI(KC_LBRC),      // Back: Navigate back (⌘[)
+    LGUI(KC_RBRC),      // Forw: Navigate forward (⌘])
+    LGUI(KC_E),         // Recent: Recent files (⌘E)
+    LGUI(KC_B),         // Decl: Go to declaration (⌘B)
+    LGUI(LALT(KC_B)),   // Impl: Go to implementation (⌘⌥B)
+    KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+
+    // Third row: Editing
+    KC_TRANSPARENT,      // -
+    LGUI(KC_SLASH),     // Comm: Comment line (⌘/)
+    LGUI(KC_D),         // Dupl: Duplicate line (⌘D)
+    LGUI(KC_BSPC),      // DelLn: Delete line (⌘⌫)
+    LGUI(LALT(KC_L)),   // Format: Reformat code (⌘⌥L)
+    LCTL(LALT(KC_O)),   // Import: Optimize imports (⌃⌥O)
+    KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+
+    // Fourth row: Search
+    KC_TRANSPARENT,      // -
+    LGUI(KC_F),         // Find: Find (⌘F)
+    LGUI(KC_R),         // Repl: Replace (⌘R)
+    LGUI(LSFT(KC_F)),   // FindP: Find in path (⌘⇧F)
+    LSFT(KC_F6),        // Rename: Rename (⇧F6)
+    LGUI(LALT(KC_V)),   // Var: Extract Variable (⌘⌥V)
+                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+
+    // Fifth row: Run/Debug & Refactoring
+    LCTL(KC_R),         // Run: Run (⌃R)
+    LCTL(KC_D),         // Debug: Debug (⌃D)
+    LGUI(KC_F8),        // Break: Toggle breakpoint (⌘F8)
+    LGUI(LALT(KC_M)),   // Method: Extract Method (⌘⌥M)
+    LGUI(LALT(KC_N)),   // Inline: Inline (⌘⌥N)
+    KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+
+    // Thumb cluster
+    LCTL(LSFT(KC_SPACE)), // Smart: Smart completion (⌃⇧Space)
+    KC_TRANSPARENT,      // -
+    KC_TRANSPARENT,      // -
+                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
 };
 
@@ -71,7 +115,7 @@ void keyboard_post_init_user(void) {
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [1] = { {0,0,0}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {182,218,204}, {0,0,0}, {92,240,255}, {0,0,0}, {0,0,0}, {182,218,204}, {92,240,255}, {92,240,255}, {138,240,255}, {0,105,255}, {0,0,0}, {92,240,255}, {92,240,255}, {92,240,255}, {0,105,255}, {0,0,0}, {92,240,255}, {41,216,239}, {41,216,239}, {0,105,255}, {0,0,0}, {92,240,255}, {92,240,255}, {41,216,239}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {197,218,204}, {134,152,255}, {92,240,255}, {92,240,255}, {175,218,204}, {92,240,255}, {139,157,235}, {138,240,255}, {138,240,255}, {197,218,204}, {41,216,239}, {41,216,239}, {0,105,255}, {182,218,204}, {190,218,204}, {41,216,239}, {41,216,239}, {0,105,255}, {182,218,204}, {190,218,204}, {41,216,239}, {41,216,239}, {0,105,255}, {138,240,255}, {190,218,204}, {41,216,239}, {41,216,239}, {0,105,255}, {138,240,255}, {0,218,204}, {0,0,0}, {92,240,255}, {41,227,255}, {0,0,0}, {0,0,0}, {0,0,0} },
 
-    [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {43,200,242}, {0,0,0}, {138,240,255}, {41,216,239}, {41,216,239}, {41,216,239}, {197,218,204}, {138,240,255}, {41,216,239}, {41,216,239}, {41,216,239}, {197,218,204}, {0,0,0}, {41,216,239}, {41,216,239}, {41,216,239}, {197,218,204}, {138,240,255}, {163,253,236}, {0,0,0}, {197,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {43,200,242}, {0,0,0}, {138,240,255}, {41,216,239}, {41,216,239}, {41,216,239}, {197,218,204}, {138,240,255}, {41,216,239}, {41,216,239}, {41,216,239}, {197,218,204}, {0,0,0}, {41,216,239}, {41,216,239}, {41,216,239}, {197,218,204}, {138,240,255}, {163,253,236}, {0,0,0}, {197,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {138,240,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
 
     [3] = { {0,108,255}, {0,0,0}, {0,0,0}, {0,0,0}, {98,150,217}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {0,0,0}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {98,150,217}, {41,255,255}, {41,255,255}, {0,0,0}, {98,150,217}, {98,150,217}, {98,150,217}, {98,150,217}, {0,0,0}, {41,255,255}, {41,255,255}, {41,255,255}, {98,150,217}, {0,0,0}, {41,255,255}, {41,255,255}, {41,255,255}, {41,255,255}, {0,0,0}, {41,255,255}, {41,255,255}, {41,255,255}, {41,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
 
